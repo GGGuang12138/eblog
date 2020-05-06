@@ -4,5 +4,10 @@ spring:
     url: jdbc:mysql://localhost:3306/blog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 123
+    # freemarker缓存关闭
+  freemarker:
+    cache: false
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
+server:
+  port: 12138
