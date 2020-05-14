@@ -25,7 +25,7 @@
         </ul>
     </div>
 
-
+<#--签到-->
     <div class="fly-panel fly-signin">
         <div class="fly-panel-title">
             签到
@@ -46,7 +46,7 @@
             -->
         </div>
     </div>
-
+<#--回贴周榜-->
     <div class="fly-panel fly-rank fly-rank-reply" id="LAY_replyRank">
         <h3 class="fly-panel-title">回贴周榜</h3>
         <dl>
@@ -113,56 +113,25 @@
             </dd>
         </dl>
     </div>
-
+<#--本周热议-->
     <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">本周热议</dt>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
-        <dd>
-            <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-            <span><i class="iconfont icon-pinglun1"></i> 16</span>
-        </dd>
+        <@hots>
+            <#list results as post>
+                <dd>
+                    <a href="jie/detail.html">${post.title}</a>
+                    <span><i class="iconfont icon-pinglun1"></i>${post.comment_count}</span>
+                </dd>
+            </#list>
+        </@hots>
+
 
         <!-- 无数据时 -->
         <!--
         <div class="fly-none">没有相关数据</div>
         -->
     </dl>
-
+<#--广告-->
     <div class="fly-panel">
         <div class="fly-panel-title">
             这里可作为广告区域
@@ -171,7 +140,7 @@
             <a href="http://layim.layui.com/?from=fly" target="_blank" class="fly-zanzhu" time-limit="2017.09.25-2099.01.01" style="background-color: #5FB878;">LayIM 3.0 - layui 旗舰之作</a>
         </div>
     </div>
-
+<#--友情链接-->
     <div class="fly-panel fly-link">
         <h3 class="fly-panel-title">友情链接</h3>
         <dl class="fly-panel-main">

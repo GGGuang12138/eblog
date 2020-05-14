@@ -10,8 +10,10 @@ spring:
   redis:
     port: 6379
     host: localhost
+    # 缓存问题
+  aop:
+    proxy-target-class: true
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
 server:
   port: 8887
-

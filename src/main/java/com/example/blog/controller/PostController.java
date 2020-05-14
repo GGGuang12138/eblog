@@ -25,24 +25,24 @@ import java.util.*;
 @RestController
 //@RequestMapping("/post")
 public class PostController extends BaseController {
-    @Autowired
-    RedisUtil redisUtil;
+//    @Autowired
+//    RedisUtil redisUtil;
 
-    @ResponseBody
-    @GetMapping("/post/hots")
-    public ErrorJson hotPost(){
-        Set<ZSetOperations.TypedTuple> lastWeekRank = redisUtil.getZSetRank("last_week_rank",0,6);
-
-        List<Map<String,Object>> hotPosts = new ArrayList<>();
-        for (ZSetOperations.TypedTuple typedTuple:lastWeekRank){
-            Map<String,Object> map = new HashMap<>();
-            map.put("comment_count",typedTuple.getScore());
-            map.put("id",redisUtil.hget("rank_post_"+typedTuple.getValue(),"post:id"));
-            map.put("title",redisUtil.hget("rank_post_" + typedTuple.getValue(),"post:title"));
-
-            hotPosts.add(map);
-        }
-        return ErrorJson.success(hotPosts);
-    }
+//    @ResponseBody
+//    @GetMapping("/post/hots")
+//    public ErrorJson hotPost(){
+//        Set<ZSetOperations.TypedTuple> lastWeekRank = redisUtil.getZSetRank("last_week_rank",0,6);
+//
+//        List<Map<String,Object>> hotPosts = new ArrayList<>();
+//        for (ZSetOperations.TypedTuple typedTuple:lastWeekRank){
+//            Map<String,Object> map = new HashMap<>();
+//            map.put("comment_count",typedTuple.getScore());
+//            map.put("id",redisUtil.hget("rank_post_"+typedTuple.getValue(),"post:id"));
+//            map.put("title",redisUtil.hget("rank_post_" + typedTuple.getValue(),"post:title"));
+//
+//            hotPosts.add(map);
+//        }
+//        return ErrorJson.success(hotPosts);
+//    }
 
 }
