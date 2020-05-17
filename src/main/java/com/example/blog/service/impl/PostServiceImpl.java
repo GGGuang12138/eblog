@@ -49,13 +49,12 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         if (level == null) level = -1;
         QueryWrapper wrapper = new QueryWrapper<Post>()
                 .eq(userId != null, "user_id", userId)
-                .eq(categoryId != 0 & categoryId != null, "category_id", categoryId)
+                .eq(categoryId != null, "category_id", categoryId)
                 .eq(level > 0, "level", 1)
                 .eq(level == 0, "level", 0)
                 .eq(recommend != null, "recommend", recommend)
                 .orderByDesc(order);
         IPage<PostVo> postVoIPage = postMapper.selectPosts(page, wrapper);
-        List<PostVo> records = postVoIPage.getRecords();
         return postVoIPage;
     }
 

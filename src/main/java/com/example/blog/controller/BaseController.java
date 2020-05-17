@@ -1,6 +1,8 @@
 package com.example.blog.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,4 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 public class BaseController {
     @Autowired
     HttpServletRequest req;
+
+
 }
