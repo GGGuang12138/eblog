@@ -29,7 +29,7 @@ public class PostsTemplate extends TemplateDirective {
         //从界面获取值
         //分页信息
         int pn = handler.getInteger("pn",1);
-        int size = handler.getInteger("size",5);
+        int size = handler.getInteger("size",10);
         //列表
         Long categoryId = handler.getLong("categoryId",1);
         String order = handler.getString("order","created");//mybatis plus实现分页

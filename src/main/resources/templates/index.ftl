@@ -15,7 +15,7 @@
 <#--                    置顶文章列表-->
                     <@posts pn =1 size = 5 categoryId =1>
                         <ul class="fly-list">
-                            <#list results.records as post >
+                            <#list results.records as post>
                                 <li>
                                     <a href="user/home.html" class="fly-avatar">
                                         <img src="${post.authorAvatar}" alt="${post.authorName}">

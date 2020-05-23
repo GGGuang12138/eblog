@@ -1,18 +1,17 @@
 package com.example.blog.controller;
 
 
-import com.example.blog.common.lang.ErrorJson;
-import com.example.blog.common.util.RedisUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.blog.service.impl.PostServiceImpl;
+import com.example.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.blog.controller.BaseController;
-
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -22,27 +21,30 @@ import java.util.*;
  * @author gg
  * @since 2020-05-05
  */
-@RestController
-//@RequestMapping("/post")
-public class PostController extends BaseController {
-//    @Autowired
-//    RedisUtil redisUtil;
+@Controller
+public class PostController{
 
-//    @ResponseBody
-//    @GetMapping("/post/hots")
-//    public ErrorJson hotPost(){
-//        Set<ZSetOperations.TypedTuple> lastWeekRank = redisUtil.getZSetRank("last_week_rank",0,6);
-//
-//        List<Map<String,Object>> hotPosts = new ArrayList<>();
-//        for (ZSetOperations.TypedTuple typedTuple:lastWeekRank){
-//            Map<String,Object> map = new HashMap<>();
-//            map.put("comment_count",typedTuple.getScore());
-//            map.put("id",redisUtil.hget("rank_post_"+typedTuple.getValue(),"post:id"));
-//            map.put("title",redisUtil.hget("rank_post_" + typedTuple.getValue(),"post:title"));
-//
-//            hotPosts.add(map);
-//        }
-//        return ErrorJson.success(hotPosts);
-//    }
+    @Autowired
+    HttpServletRequest req;
+
+    @Autowired
+    PostServiceImpl postService;
+
+    public Page getPage(){
+        int pn = ServletRequestUtils.getIntParameter(req,"pn",1);
+        int size = ServletRequestUtils.getIntParameter(req,"size",2);
+        Page page = new Page(pn, size);
+        return page;
+    }
+
+    @GetMapping("/category/{id:\\d*}")
+    public String category(@PathVariable Long id) {
+        Page page = getPage();
+        IPage<PostVo> pageData = postService.paging(page,null,id,null,null,"created");
+        req.setAttribute("pageData",pageData);
+        req.setAttribute("currentCategoryId",id);
+        return "post/category";
+    }
+
 
 }

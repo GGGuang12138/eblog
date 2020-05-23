@@ -14,5 +14,12 @@ public class BaseController {
     @Autowired
     HttpServletRequest req;
 
+    public Page getPage(){
+        int pn = ServletRequestUtils.getIntParameter(req,"pn",1);
+        int size = ServletRequestUtils.getIntParameter(req,"size",10);
+        Page page = new Page(pn, size);
+        return page;
+    }
+
 
 }

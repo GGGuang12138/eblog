@@ -25,7 +25,7 @@ public class IndexController{
 
     public Page getPage(){
         int pn = ServletRequestUtils.getIntParameter(req,"pn",1);
-        int size = ServletRequestUtils.getIntParameter(req,"size",10);
+        int size = ServletRequestUtils.getIntParameter(req,"size",2);
         Page page = new Page(pn, size);
         return page;
     }
@@ -34,6 +34,7 @@ public class IndexController{
     public String index () {
         IPage results = postService.paging(getPage(),null,null,null,null,"created");
         req.setAttribute("pageData",results);
+        req.setAttribute("currentCategoryId",0);
         return "index";
     }
 
