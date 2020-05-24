@@ -22,7 +22,7 @@
                                     </a>
                                     <h2>
                                         <a class="layui-badge">${post.categoryName}</a>
-                                        <a href="jie/detail.html">${post.title}</a>
+                                        <a href="/post/${post.id}">${post.title}</a>
                                     </h2>
                                     <div class="fly-list-info">
                                         <a href="user/home.html" link>

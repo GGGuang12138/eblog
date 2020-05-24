@@ -36,6 +36,9 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     @Autowired
     PostMapper postMapper;
 
+    public PostVo selectOnePost(QueryWrapper<Post> wrapper) {
+        return  postMapper.selectOnePost(wrapper);
+    }
     /**
      * 分页
      *

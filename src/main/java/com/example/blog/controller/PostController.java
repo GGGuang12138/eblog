@@ -1,9 +1,13 @@
 package com.example.blog.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.blog.entity.Post;
+import com.example.blog.service.impl.CommentServiceImpl;
 import com.example.blog.service.impl.PostServiceImpl;
+import com.example.blog.vo.CommentVo;
 import com.example.blog.vo.PostVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +34,9 @@ public class PostController{
     @Autowired
     PostServiceImpl postService;
 
+    @Autowired
+    CommentServiceImpl commentService;
+
     public Page getPage(){
         int pn = ServletRequestUtils.getIntParameter(req,"pn",1);
         int size = ServletRequestUtils.getIntParameter(req,"size",2);
@@ -44,6 +51,18 @@ public class PostController{
         req.setAttribute("pageData",pageData);
         req.setAttribute("currentCategoryId",id);
         return "post/category";
+    }
+
+    @GetMapping("/post/{id:\\d*}")
+    public String detail(@PathVariable Long id) {
+        QueryWrapper wrapper = new QueryWrapper<Post>()
+                .eq(id != null,"p.id",id);
+        PostVo vo = postService.selectOnePost(wrapper);
+        IPage<CommentVo> commentPage = commentService.paging(getPage(),vo.getId(),null,"created");
+        req.setAttribute("currentCategoryId",vo.getCategoryId());
+        req.setAttribute("post",vo);
+        req.setAttribute("pageData",commentPage);
+        return "post/detail";
     }
 
 
