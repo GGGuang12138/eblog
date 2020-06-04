@@ -1,6 +1,6 @@
 package com.example.blog.common.exception;
 
-import com.example.blog.common.lang.ErrorJson;
+import com.example.blog.common.lang.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,8 +33,8 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(value = CustomException.class)
     @ResponseBody
-    public ErrorJson jsonErrorHandler(HttpServletRequest request,CustomException e){
-        return ErrorJson.error(e.getMessage(),"some error data");
+    public Result jsonErrorHandler(HttpServletRequest request, CustomException e){
+        return Result.error(e.getMessage(),"some error data");
     }
 
 }
